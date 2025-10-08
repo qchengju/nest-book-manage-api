@@ -1,6 +1,6 @@
 export enum ConfigEnum {
-  SERVE_ENV = 'SERVER_ENV',
-  SERVE_PORT = 'SERVE_PORT',
+  SERVER_ENV = 'SERVER_ENV',
+  SERVER_PORT = 'SERVE_PORT',
   DB_TYPE = 'DB_TYPE', // 数据库类型
   DB_HOST = 'DB_HOST',
   DB_PORT = 'DB_PORT',
