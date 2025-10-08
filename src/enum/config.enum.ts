@@ -1,0 +1,13 @@
+export enum ConfigEnum {
+  SERVE_ENV = 'SERVER_ENV',
+  SERVE_PORT = 'SERVE_PORT',
+  DB_TYPE = 'DB_TYPE', // 数据库类型
+  DB_HOST = 'DB_HOST',
+  DB_PORT = 'DB_PORT',
+  DB_USERNAME = 'DB_USERNAME',
+  DB_PASSWORD = 'DB_PASSWORD',
+  DB_DATABASE = 'DB_DATABASE',
+  DB_SYNC = 'DB_SYNC',
+
+  JWT_SECRET = 'JWT_SECRET',
+}
