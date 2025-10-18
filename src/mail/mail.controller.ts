@@ -5,9 +5,9 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('auth')
 @ApiTags('权限校验')
 export class MailController {
-     constructor(
+  constructor(
     private readonly mailService: MailService,
-    private readonly verificationService: VerificationService,
+    private readonly verificationService: VerificationService
   ) {}
 
   @Get('send-code')
@@ -20,23 +20,23 @@ export class MailController {
     await this.verificationService.storeCode(email, code);
     await this.mailService.sendVerificationCode({ to: email, code });
 
-    return { success: true, message: '验证码已发送' };
+    return { code: 200, message: '验证码已发送', data: null };
   }
 
-//   @Get('verify-code')
-//   async verifyCode(
-//     @Query('email') email: string,
-//     @Query('code') code: string,
-//   ) {
-//     if (!email || !code) {
-//       throw new BadRequestException('缺少参数');
-//     }
+  //   @Get('verify-code')
+  //   async verifyCode(
+  //     @Query('email') email: string,
+  //     @Query('code') code: string,
+  //   ) {
+  //     if (!email || !code) {
+  //       throw new BadRequestException('缺少参数');
+  //     }
 
-//     const isValid = await this.verificationService.verifyCode(email, code);
-//     if (!isValid) {
-//       throw new BadRequestException('验证码错误或已过期');
-//     }
+  //     const isValid = await this.verificationService.verifyCode(email, code);
+  //     if (!isValid) {
+  //       throw new BadRequestException('验证码错误或已过期');
+  //     }
 
-//     return { success: true, message: '验证码校验成功' };
-//   }
+  //     return { success: true, message: '验证码校验成功' };
+  //   }
 }

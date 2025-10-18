@@ -9,6 +9,7 @@ export const swaggerSetup = (app: INestApplication) => {
     .setDescription('这是一个基于 NestJS 的 API 文档, 主要描述了一个图书管理系统') // 文档描述
     .setVersion('1.0') // 文档版本
     .addTag('权限校验') // 添加标签（用于归类接口）
+    .addTag('身份管理')
     .addTag('用户管理')
     .addTag('图书管理')
     .addBearerAuth() // 支持 JWT 认证（可选）

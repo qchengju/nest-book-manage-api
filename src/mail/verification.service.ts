@@ -20,7 +20,7 @@ export class VerificationService {
   // 存储验证码（默认 5 分钟过期）
   async storeCode(email: string, code: string, expire: number = 300) {
     // 使用新版本 API
-    await this.client.set(`verification:${email}`, code, { EX: expire });
+    await this.client.set(`email:verify:${email}`, code, { EX: expire });
   }
 
   // 校验验证码

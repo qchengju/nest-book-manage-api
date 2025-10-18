@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import * as _ from 'lodash';
 import { ConfigEnum } from '../enum/config.enum';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 

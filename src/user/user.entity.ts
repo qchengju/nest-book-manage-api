@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+import { UserProfile } from './user-profile.entity';
+import { Role } from '../role/role.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -11,6 +13,14 @@ export class User {
   @Column()
   password: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   email: string;
+
+  @OneToOne(() => UserProfile, userProfile => userProfile.user, { cascade: true })
+  @JoinColumn()
+  userProfile: UserProfile;
+
+  @ManyToMany(() => Role, role => role.users)
+  @JoinTable({ name: 'user_role' })
+  roles: Role[];
 }
