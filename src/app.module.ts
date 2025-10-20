@@ -10,9 +10,18 @@ import { UserModule } from './user/user.module';
 import { BookModule } from './book/book.module';
 import { MailModule } from './mail/mail.module';
 import { RoleModule } from './role/role.module';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(getDatabaseConfig()), AuthModule, UserModule, BookModule, MailModule, RoleModule],
+  imports: [
+    TypeOrmModule.forRoot(getDatabaseConfig()),
+    AuthModule,
+    UserModule,
+    BookModule,
+    MailModule,
+    RoleModule,
+    MenuModule,
+  ],
   controllers: [],
   providers: [
     {

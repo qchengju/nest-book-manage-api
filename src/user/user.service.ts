@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like, MoreThanOrEqual } from 'typeorm';
 import { User } from './user.entity';
 import { FindAllUserDto } from './dto/find-all-user.dto';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class UserService {
@@ -11,6 +12,7 @@ export class UserService {
   // 创建用户
   async create(user: User) {
     const midUser = await this.userRepository.create(user);
+    midUser.password = await argon2.hash(midUser.password); // 密码加密
     return await this.userRepository.save(midUser);
   }
 
@@ -51,7 +53,7 @@ export class UserService {
   async findOne(option: string | number) {
     if (typeof option === 'string') {
       return await this.userRepository.findOne({
-        where: [{ email: option}, { username: option }],
+        where: [{ username: option }, { email: option }],
         relations: ['userProfile', 'roles'],
       });
     }
@@ -63,6 +65,4 @@ export class UserService {
     }
     return null;
   }
-
-
 }

@@ -16,7 +16,8 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => {
     username: config?.[ConfigEnum.DB_USERNAME],
     password: config?.[ConfigEnum.DB_PASSWORD],
     database: config?.[ConfigEnum.DB_DATABASE],
-    entities: [__dirname + '/../**/*.entity{.js,.ts}'], // 调整路径匹配模式
+  // 优先匹配 .ts 然后 .js；在 ts-node 环境下确保能找到 .ts 文件
+  entities: [__dirname + '/../**/*.entity{.js,.ts}'], // 调整路径匹配模式
     // 同步本地的schema与数据库 -> 初始化的时候去使用
     synchronize: true,
   }

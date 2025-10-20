@@ -52,7 +52,6 @@ export class AuthController {
   })
   async signup(@Body() dto: RegisterDto) {
     const user = await this.authService.register(dto);
-    console.log(user);
     if (user) {
       return {
         code: 200,

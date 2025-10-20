@@ -11,6 +11,8 @@ import { LoginDto } from './dto/login.dto';
 
 import { RoleEnum } from '../enum/role.enum';
 
+import * as argon2  from 'argon2';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -38,6 +40,7 @@ export class AuthService {
       throw new HttpException('注册信息无效', HttpStatus.BAD_REQUEST);
     }
 
+
     return await this.userServie.create({
       username: email,
       email,
@@ -61,7 +64,7 @@ export class AuthService {
     if (!user) {
       throw new HttpException('用户不存在', HttpStatus.BAD_REQUEST);
     }
-    if (user.password !== password) {
+    if (!(await argon2.verify(user.password, password))) {
       throw new HttpException('账号或者密码错误', HttpStatus.BAD_REQUEST);
     }
 
