@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { ConfigEnum } from '../enum/config.enum';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 
 export const getServerConfig = ()=>{
 return dotenv.config().parsed
@@ -22,3 +23,8 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => {
     synchronize: true,
   }
 };
+
+export const getCurrentDir = () => {
+  console.log(join(__dirname, '../../'));
+  return join(__dirname, '../../');
+}

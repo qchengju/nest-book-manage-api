@@ -11,7 +11,7 @@ import { LoginDto } from './dto/login.dto';
 
 import { RoleEnum } from '../enum/role.enum';
 
-import * as argon2  from 'argon2';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class AuthService {
@@ -40,13 +40,17 @@ export class AuthService {
       throw new HttpException('注册信息无效', HttpStatus.BAD_REQUEST);
     }
 
+    const tempUser = new User();
+    tempUser.username = email;
+    tempUser.email = email;
+    tempUser.password = await argon2.hash(password);
+    tempUser.roles = [{
+      id: RoleEnum.User, name: 'User',
+      users: [],
+      menus: []
+    }];
 
-    return await this.userServie.create({
-      username: email,
-      email,
-      password,
-      roles: [{ id: 1, name: RoleEnum.User }],
-    } as User);
+    return await this.userServie.create(tempUser);
   }
 
   // 登录

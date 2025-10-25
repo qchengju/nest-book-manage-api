@@ -12,7 +12,17 @@ export const swaggerSetup = (app: INestApplication) => {
     .addTag('身份管理')
     .addTag('用户管理')
     .addTag('图书管理')
-    .addBearerAuth() // 支持 JWT 认证（可选）
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'Authorization',
+        description: '请输入您的 JWT 令牌',
+        in: 'header',
+      },
+      'token',
+    ) // 支持 JWT 认证（可选）
     .build();
 
   // 2. 生成 Swagger 文档

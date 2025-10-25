@@ -1,9 +1,10 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Controller('auth')
 @ApiTags('权限校验')
@@ -12,17 +13,19 @@ export class AuthController {
 
   // 登录
   @Post('signin')
-   @ApiBody({
-    type: LoginDto,
+  @ApiOperation({ summary: '用户登录' })
+  @ApiBody({
+    type: CreateUserDto,
     examples: {
-      example1: {
+      example: {
+        summary: '登录示例',
         value: {
-          username: 'string',
-          email: 'john@example.com',
-          password: 'password123'
-        }
-      }
-    }
+          username: 'testuser',
+          password: 'password',
+          email: 'testuser@example.com',
+        },
+      },
+    },
   })
   async signin(@Body() dto: LoginDto) {
     const { username, email, password } = dto;
@@ -38,19 +41,21 @@ export class AuthController {
 
   // 注册
   @Post('signup')
+  @ApiOperation({ summary: '用户注册' })
   @ApiBody({
     type: RegisterDto,
     examples: {
-      example1: {
+      example: {
+        summary: '注册示例',
         value: {
-          username: 'string',
-          email: 'john@example.com',
-          code: '111111'
-        }
-      }
-    }
+          email: 'testuser@example.com',
+          password: 'password',
+          code: 123456,
+        },
+      },
+    },
   })
-  async signup(@Body() dto: RegisterDto) {
+  async signup(@Body() dto: RegisterDto): Promise<{ code: number; message: string; data: null }> {
     const user = await this.authService.register(dto);
     if (user) {
       return {

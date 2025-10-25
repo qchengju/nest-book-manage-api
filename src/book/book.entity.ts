@@ -1,18 +1,21 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../user/user.entity';
+import { Column, Entity,  PrimaryGeneratedColumn } from 'typeorm';
+
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  author: string;
+
   @Column({ unique: true })
-  bookname: string;
+  bookName: string;
 
   @Column()
   description: string;
 
   @Column()
-  image: string;
+  imageCover: string;
 
   @Column({ type: 'timestamp' })
   publishTime: Date;

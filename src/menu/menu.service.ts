@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import {Repository} from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { Menu } from './menu.entity';
 @Injectable()
 export class MenuService {
   constructor(
-    private readonly menuRepository: Repository<Menu>,
+   @InjectRepository(Menu) private readonly menuRepository: Repository<Menu>,
   ) {}
   create(createMenuDto: CreateMenuDto) {
     return this.menuRepository.create(createMenuDto);

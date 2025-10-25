@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGen
 
 import { UserProfile } from './user-profile.entity';
 import { Role } from '../role/role.entity';
+import { Exclude } from 'class-transformer';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -11,6 +12,7 @@ export class User {
   username: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column({ unique: true })

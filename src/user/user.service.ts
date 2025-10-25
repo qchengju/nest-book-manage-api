@@ -17,8 +17,8 @@ export class UserService {
   }
 
   // 删除用户
-  delete(id: number) {
-    return this.userRepository.delete(id);
+  delete(ids: number[]) {
+    return this.userRepository.delete(ids);
   }
 
   // 更新用户
@@ -44,8 +44,9 @@ export class UserService {
       relations: ['userProfile', 'roles'],
     });
     return {
-      list,
+      page,
       total,
+      list,
     };
   }
 

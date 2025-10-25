@@ -2,7 +2,7 @@ import { IsOptional, IsInt } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class FindAllUserDto {
+export class FindAllBookDto {
   @IsOptional()
   @Type(() => Number)
   @IsInt()
