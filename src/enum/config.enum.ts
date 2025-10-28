@@ -8,6 +8,8 @@ export enum ConfigEnum {
   DB_PASSWORD = 'DB_PASSWORD',
   DB_DATABASE = 'DB_DATABASE',
   DB_SYNC = 'DB_SYNC',
+  REDID_HOST = 'REDIS_HOST',
+  REDIS_PORT = 'REDIS_PORT',
 
   JWT_SECRET = 'JWT_SECRET',
 }

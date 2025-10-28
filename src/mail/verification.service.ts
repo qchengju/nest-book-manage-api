@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as redis from 'redis';
+import { getServerConfig } from '../config/server.config';
 
 @Injectable()
 export class VerificationService {
@@ -7,7 +8,7 @@ export class VerificationService {
 
   constructor() {
     this.client = redis.createClient({
-      url: 'redis://localhost:6379',
+      url: `redis://${getServerConfig()?.REDIS_HOST}:${getServerConfig()?.REDIS_PORT}`,
     });
     this.client.connect();
   }
