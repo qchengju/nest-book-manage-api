@@ -10,7 +10,6 @@ import { UserModule } from './user/user.module';
 import { BookModule } from './book/book.module';
 import { MailModule } from './mail/mail.module';
 import { RoleModule } from './role/role.module';
-import { MenuModule } from './menu/menu.module';
 import { FileModule } from './file/file.module';
 
 @Module({
@@ -21,7 +20,6 @@ import { FileModule } from './file/file.module';
     BookModule,
     MailModule,
     RoleModule,
-    MenuModule,
     FileModule,
   ],
   controllers: [],

@@ -1,9 +1,8 @@
 # log1
 
-## 2025-10-8
+## 项目中用到的技术盘点
 
-完成项目基础构建：
-env 配置文件
+env 配置文件 dotenv库
 typeorm + mysql2 连接数据库
 nestjs/swagger 集成 swagger 文档
 
@@ -15,3 +14,6 @@ nestjs/swagger 集成 swagger 文档
 
 基本完成了接口的编写，还有部分需要进行更深层次的权限验证管理
 基于casl
+
+redis 完成了验证码的存储与校验
+文件上传 使用中间件 multer

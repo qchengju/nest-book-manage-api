@@ -2,7 +2,6 @@ import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 't
 
 import { User } from '../user/user.entity';
 import { Expose } from 'class-transformer';
-import { Menu } from '../menu/menu.entity';
 
 @Entity()
 export class Role {
@@ -17,8 +16,4 @@ export class Role {
   @ManyToMany(() => User, (user) => user.roles)
   @Expose()
   users: User[];
-
-  @ManyToMany(() => Menu, (menu) => menu.roles)
-  @JoinTable({name:"role_menu"})
-  menus: Menu[];
 }

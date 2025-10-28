@@ -47,7 +47,6 @@ export class AuthService {
     tempUser.roles = [{
       id: RoleEnum.User, name: 'User',
       users: [],
-      menus: []
     }];
 
     return await this.userServie.create(tempUser);
