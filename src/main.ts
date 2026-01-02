@@ -2,7 +2,7 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { swaggerSetup } from './config/swagger.config';
 import { ClassSerializerInterceptor,Logger, ValidationPipe } from '@nestjs/common';
-import { getServerConfig,getCurrentDir } from './config/server.config';
+import { getServerConfig } from './config/server.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
